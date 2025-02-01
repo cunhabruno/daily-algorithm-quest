@@ -1,0 +1,43 @@
+name: Ruby Tests
+
+on:
+  push:
+    paths:
+      - 'ruby/**'
+      - '.github/workflows/ruby.yml'
+  pull_request:
+    paths:
+      - 'ruby/**'
+      - '.github/workflows/ruby.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ruby
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.4.1'
+        bundler-cache: true
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
+
+    - name: Run tests
+      run: bundle exec rspec
+
+    - name: Run RuboCop
+      run: bundle exec rubocop
+
+    - name: Run SimpleCov
+      run: bundle exec rspec
+      env:
+        COVERAGE: true

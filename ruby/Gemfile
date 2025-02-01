@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+gem 'rspec'
+gem 'rubocop'
+gem 'simplecov'
+
+ruby file: File.expand_path('.ruby-version', __dir__)
