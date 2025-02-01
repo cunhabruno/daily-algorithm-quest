@@ -2,13 +2,15 @@
 
 source 'https://rubygems.org'
 
-gem 'rbs'
-gem 'steep' 
-gem 'sorbet', :group => :development
-gem 'sorbet-runtime'
-gem 'tapioca', require: false, :group => [:development, :test]
-gem 'rspec'
-gem 'rubocop', require: false
-gem 'simplecov'
+group :development, :test do
+  gem 'rspec'
+  gem 'rubocop'
+  gem 'simplecov', require: false
+  gem 'simplecov-lcov', require: false
 
+  # Sorbet gems
+  gem 'sorbet', platforms: %i[ruby mswin mingw x64_mingw]
+  gem 'sorbet-static-and-runtime'
+  gem 'tapioca', require: false # Optional: for generating RBI files
+end
 ruby file: File.expand_path('.ruby-version', __dir__)

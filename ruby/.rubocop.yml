@@ -1,6 +1,8 @@
 AllCops:
   NewCops: enable
   TargetRubyVersion: 3.4.1
+  Exclude:
+    - bin/**/*
 
 Style/Documentation:
   Enabled: false
