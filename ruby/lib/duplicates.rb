@@ -1,6 +1,12 @@
 # frozen_string_literal: true
+# typed: true
+
+require 'sorbet-runtime'
 
 class Duplicates
+  extend T::Sig
+
+  sig { params(nums: T::Array[Integer]).returns(T::Boolean) }
   def contains_duplicate(nums)
     seen_numbers = Set.new
 
@@ -9,7 +15,11 @@ class Duplicates
 
       seen_numbers.add(num)
     end
-
     false
+  end
+
+  sig { params(nums: T::Array[Integer]).returns(T::Boolean) }
+  def contains_duplicate_buildin(nums)
+    nums.length != nums.uniq.length
   end
 end
